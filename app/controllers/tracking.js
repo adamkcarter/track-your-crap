@@ -12,8 +12,10 @@ export default Ember.Controller.extend({
 			publish() {
 				const casinoName = this.get('casinoName');
 				const location = this.get('location');
-				const date = this.get('date');
+				const date = new Date(dateFormat(this.get('date'),"mm/dd/yyyy"));
 				const changeInMoney = this.get('changeInMoney');
+
+				var dateFormat = require('dateformat');
 
 				// console.log(casinoName);
 				// console.log(location);
@@ -23,7 +25,7 @@ export default Ember.Controller.extend({
 				var newOuting = this.store.createRecord('outing', {
 					casinoName:casinoName, 
 					location:location, 
-					date:new Date(date), 
+					date:dateFormat(date, "dd/mm/yyyy"), 
 					changeInMoney:changeInMoney
 				});
 			

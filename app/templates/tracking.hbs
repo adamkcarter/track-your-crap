@@ -3,12 +3,13 @@
 <div class="flex-container">
 	<div class="flex-item">
 		<b>How have things gone in the past?</b>
-			{{#each model as |entry|}}
+			{{#each model as |outing|}}
 				<p class="big">
-					{{entry.casino}} : {{entry.date}}
-				</p>
-				<p>
-					{{entry.change_in_money}}
+					{{outing.casinoName}}
+					:
+					{{outing.date}}
+					:
+					{{outing.changeInMoney}}
 				</p>
 			{{/each}}
 	</div>

@@ -22,6 +22,6 @@ let tracked_craps = [{
 
 export default Ember.Route.extend({
 	model(){
-		return tracked_craps;
+    return this.store.findAll('outing');
 	}
 });
