@@ -1,0 +1,41 @@
+<h1 class="header">Welcome back, have you bought a laptop yet?</h1>
+
+<div class="flex-container">
+	<div class="flex-item">
+		<b>How have things gone in the past?</b>
+			{{#each model as |entry|}}
+				<p class="big">
+					{{entry.casino}} : {{entry.date}}
+				</p>
+				<p>
+					{{entry.change_in_money}}
+				</p>
+			{{/each}}
+	</div>
+
+<form action="">
+	<div class="flex-item">
+		<b>Back at it, we're back back at it again.</b>
+		<div class="flex-container">
+		  <div class="flex-item">
+		  	<div class="flex-container-col">
+				  <div class='flex-item'>Casino Name :</div>
+					<div class='flex-item'>Location : </div>
+					<div class='flex-item'>Date : </div>
+					<div class='flex-item'>Winnings or Loses :</div> 
+				</div>
+			</div>
+			<div class="flex-item">
+				<div class="flex-container-col">
+					<div class='flex-item'> {{input value=casinoName}}</div>
+					<div class='flex-item'> {{input value=location}}</div>
+					<div class='flex-item'> {{input  value=date}}</div>
+					<div class='flex-item'> {{input  value=changeInMoney}}</div>
+					<div class='flex-item'> <button {{action "publish"}}> submit </button></div> 
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+</div>
