@@ -10,7 +10,6 @@ export default Ember.Controller.extend({
 			const data = this.get('outings.[]').getEach('casinoName');
 			const casinoNames = [];
 			var i = 0;
-			debugger;	
 			for  (i = 0 ;i < data.length; i++) {
 				var curName = data[i]
 				// if (casinoNames.indexOf(i) > -1)
@@ -26,12 +25,15 @@ export default Ember.Controller.extend({
 
 		casinoName:"",
 		location:"",
-		date:"mm/dd/yyyy",
+		date:"mm/dd/yyyy", 
 		changeInMoney:"",
 
 		actions: {			
 			publish() {
-				const casinoName = this.get('casinoName');
+				var selected = Ember.$('#casinoName');
+				// debugger;
+				var casinoName = selected[0].options[selected[0].selectedIndex].value;
+				// const casinoName = this.get('casinoName');
 				const location = this.get('location');
 				const date = new Date(this.get('date'));
 				const changeInMoney = this.get('changeInMoney');

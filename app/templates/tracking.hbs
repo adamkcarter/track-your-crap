@@ -28,7 +28,14 @@
 				</div>
 				<div class="flex-item">
 					<div class="flex-container-col">
-						<div class='flex-item'> {{input value=casinoName}}</div>
+						<div class='flex-item'>   
+							<select id ="casinoName"> 
+  							{{#each currentCasinoNames as |casino|}}
+  								<option value={{casino}}>{{casino}}</option>
+  							{{/each}}   
+  						</select> 
+  {{!-- {{input value=casinoName}} --}}
+  				</div>
 						<div class='flex-item'> {{input value=location}}</div>
 						<div class='flex-item'> {{input  value=date}}</div>
 						<div class='flex-item'> {{input  value=changeInMoney}}</div>
@@ -38,5 +45,5 @@
 			</div>
 		</div>
 	</form>
-	{{!-- {{currentCasinoNames}} --}}
 </div>
+
