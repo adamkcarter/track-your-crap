@@ -23,6 +23,7 @@ export default Ember.Controller.extend({
 			return casinoNames;
 		}),
 
+		id: "",
 		casinoName:"",
 		location:"",
 		date:"mm/dd/yyyy", 
@@ -31,8 +32,22 @@ export default Ember.Controller.extend({
 		editMode: false,
 
 		actions: {
-			delete(){
+			deleteRecord(){
+				// debugger;
+				let id = this.get('id');
+		    console.log(this.store.find('outing', id).toString());
+		    this.store.find('outing', id).then(function(id){
+		    	id.destroyRecord();
+		    });
+			
+			this.set('editMode', false);
 
+			},
+
+			edit(){
+				// debugger;
+				this.send('deleteRecord');
+				this.send('publish');
 			},
 
 			triggerEditMode(outing){
@@ -44,6 +59,7 @@ export default Ember.Controller.extend({
 				this.set('location', outing.get('location'));
 				this.set('date', new Date(outing.get('date')));
 				this.set('changeInMoney', outing.get('changeInMoney'));
+				this.set('id', outing.get('id'));
 			},
 
 			selectChange(event){
