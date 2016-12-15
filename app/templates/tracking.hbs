@@ -4,7 +4,7 @@
 	<div class="flex-item">
 		<b>How have things gone in the past?</b>
 			{{#each outings as |outing|}}
-				<p class="big">
+				<p class="big" onclick={{action "triggerEditMode" outing}}>
 					{{outing.casinoName}}
 					:
 					{{date-formatter outing.date}}
@@ -24,22 +24,33 @@
 						<div class='flex-item'>Location : </div>
 						<div class='flex-item'>Date : </div>
 						<div class='flex-item'>Winnings or Loses :</div> 
+						{{#if editMode}}
+							<div class='flex-item'><button {{action "delete"}}> Delete</button></div> 
+						{{/if}}
+
 					</div>
 				</div>
 				<div class="flex-item">
 					<div class="flex-container-col">
 						<div class='flex-item'>   
-							<select id ="casinoName"> 
-  							{{#each currentCasinoNames as |casino|}}
-  								<option value={{casino}}>{{casino}}</option>
-  							{{/each}}   
-  						</select> 
-  {{!-- {{input value=casinoName}} --}}
+							{{#if inputCasino}}
+								{{input value=casinoName}}
+	  					{{else}}
+	  						<select id="casinoName" onchange={{action "selectChange"}}> 
+	  							{{#each currentCasinoNames as |casino|}}
+	  								<option value={{casino}}>{{casino}}</option>
+	  							{{/each}}   
+	  						</select> 
+	  					{{/if}}
   				</div>
-						<div class='flex-item'> {{input value=location}}</div>
+						<div class='flex-item' id='location'> {{input value=location}}</div>
 						<div class='flex-item'> {{input  value=date}}</div>
 						<div class='flex-item'> {{input  value=changeInMoney}}</div>
-						<div class='flex-item'> <button {{action "publish"}}> submit </button></div> 
+						{{#if editMode}}
+							<div class='flex-item'> <button {{action "edit"}}> edit </button></div> 
+						{{else}}
+							<div class='flex-item'> <button {{action "publish"}}> submit </button></div> 
+						{{/if}}
 					</div>
 				</div>
 			</div>
