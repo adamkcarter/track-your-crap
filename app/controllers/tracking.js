@@ -72,11 +72,12 @@ export default Ember.Controller.extend({
 
 			publish() {
 				// debugger;
+				let casinoName = "";
 				if (this.get('inputCasino')){
-					var casinoName = this.get('casinoName');					
+					casinoName = this.get('casinoName');					
 				} else {
-					var selected = Ember.$('#casinoName');
-					var casinoName = selected[0].options[selected[0].selectedIndex].value;
+					let selected = Ember.$('#casinoName');
+					casinoName = selected[0].options[selected[0].selectedIndex].value;
 				}
 				
 				const location = this.get('location');

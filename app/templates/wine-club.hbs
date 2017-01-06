@@ -1,0 +1,16 @@
+<div class="flex-container">
+	<div class="flex-item">
+		<b>Glory to the wine gods!</b>
+			{{#each wines as |wine|}}
+				<p class="big" {{!-- onclick={{action "triggerEditMode" wine}} --}}>
+					<div class="flex-item">{{wine.brand}} - {{wine.colour}} {{wine.wineType}}</div>
+					<div class="flex-item">Retailing for: {{wine.price}}</div>
+					<div class="flex-item">{{wine.ratingOutOfTen}} out of Ten</div>
+					<div class="flex-item">Consumed on: {{date-formatter wine.date}}</div>
+				</p>
+			{{/each}}
+	</div>
+</div>
+
+
+{{!-- <button {{action "publish"}}> submit </button> --}}

@@ -1,8 +1,22 @@
-<p>
-	<h1 class='header'>Track you Crap!</h1>
-</p>
-
-<h3 class='header'>
-	{{#link-to "tracking"}}Let's get started!{{/link-to}}
-</h3>
-
+<div class='flex-container'>
+	{{#link-to "tracking"}}
+		<div class='flex-item'>
+			<p>
+				<h1 class='header'>Track you Crap!</h1>
+			</p>
+{{!-- 			<h3 class='header'>
+				Let's get started!
+			</h3>--}}		
+		</div>
+	{{/link-to}}
+	{{#link-to "wine-club"}}
+		<div class='flex-item'>
+			<p>
+				<h1 class='header'>Wine Club Baby!</h1>
+			</p>
+		</div>
+	{{/link-to}}
+</div>
+{{!-- <div class='header'>Username: {{input value=username}}</div>
+<div class='header'>Password: {{input value=password}}</div>
+ --}}
