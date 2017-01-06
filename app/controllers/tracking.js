@@ -8,32 +8,77 @@ export default Ember.Controller.extend({
 
 		currentCasinoNames: Ember.computed('outings', function(){
 			const data = this.get('outings.[]').getEach('casinoName');
-			const casinoNames = [];
+			const casinoNames = ['','Enter New Casino'];
 			var i = 0;
 			for  (i = 0 ;i < data.length; i++) {
-				var curName = data[i]
+				var curName = data[i];
 				// if (casinoNames.indexOf(i) > -1)
 				if (casinoNames.indexOf(curName)>-1) {
 				} 
 				else 
 				{
-					casinoNames.push(curName)
+					casinoNames.push(curName);
 				}
 			}
 			return casinoNames;
 		}),
 
+		id: "",
 		casinoName:"",
 		location:"",
 		date:"mm/dd/yyyy", 
 		changeInMoney:"",
+		inputCasino: false,
+		editMode: false,
 
-		actions: {			
-			publish() {
-				var selected = Ember.$('#casinoName');
+		actions: {
+			deleteRecord(){
 				// debugger;
-				var casinoName = selected[0].options[selected[0].selectedIndex].value;
-				// const casinoName = this.get('casinoName');
+				let id = this.get('id');
+		    console.log(this.store.find('outing', id).toString());
+		    this.store.find('outing', id).then(function(id){
+		    	id.destroyRecord();
+		    });
+			
+			this.set('editMode', false);
+
+			},
+
+			edit(){
+				// debugger;
+				this.send('deleteRecord');
+				this.send('publish');
+			},
+
+			triggerEditMode(outing){
+				// debugger;
+				this.set('editMode', true);
+				this.set('inputCasino', true);
+
+				this.set('casinoName', outing.get('casinoName'));
+				this.set('location', outing.get('location'));
+				this.set('date', new Date(outing.get('date')));
+				this.set('changeInMoney', outing.get('changeInMoney'));
+				this.set('id', outing.get('id'));
+			},
+
+			selectChange(event){
+				if (event.target.value === "Enter New Casino"){
+					this.set('inputCasino', true);
+				} else {
+					this.set('inputCasino', false);
+				}
+			},
+
+			publish() {
+				// debugger;
+				if (this.get('inputCasino')){
+					var casinoName = this.get('casinoName');					
+				} else {
+					var selected = Ember.$('#casinoName');
+					var casinoName = selected[0].options[selected[0].selectedIndex].value;
+				}
+				
 				const location = this.get('location');
 				const date = new Date(this.get('date'));
 				const changeInMoney = this.get('changeInMoney');
